@@ -10,6 +10,7 @@ class UserRead(schemas.BaseUser[uuid.UUID]):
     first_name: Optional[str] = None
     last_name: Optional[str] = None
     role: str = "student"
+    grade: Optional[str] = None
 
 
 class UserCreate(schemas.BaseUserCreate):
@@ -17,10 +18,12 @@ class UserCreate(schemas.BaseUserCreate):
     first_name: Optional[str] = None
     last_name: Optional[str] = None
     role: str = "student"
+    grade: Optional[str] = None
 
 
 class UserUpdate(schemas.BaseUserUpdate):
     """User update schema"""
     first_name: Optional[str] = None
     last_name: Optional[str] = None
-    role: Optional[str] = None 
+    role: Optional[str] = None
+    grade: Optional[str] = None 
