@@ -3,18 +3,20 @@ FROM python:3.11-slim
 WORKDIR /app
 
 # Install system dependencies
-RUN apt-get update && apt-get install -y procps curl
+RUN apt-get update && apt-get install -y \
+    gcc \
+    && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements files
-COPY requirements*.txt ./
-
-# Install dependencies
-RUN pip install -r requirements.txt && \
-    if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
+# Copy requirements and install Python dependencies
+COPY pyproject.toml .
+RUN pip install --no-cache-dir -e .
 
 # Copy application code
-COPY app /app
-COPY tests /app/tests
+COPY tutor_stack_auth/ ./tutor_stack_auth/
 
-# Command to run the application
-CMD ["python", "-m", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"] 
+# Create keys directory
+RUN mkdir -p /keys
+
+EXPOSE 8000
+
+CMD ["uvicorn", "tutor_stack_auth.main:app", "--host", "0.0.0.0", "--port", "8000"] 
