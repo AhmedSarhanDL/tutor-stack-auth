@@ -567,3 +567,9 @@ def oauth_client() -> OAuth2:
         ACCESS_TOKEN_ENDPOINT,
         name="service1",
     )
+
+
+@pytest.fixture
+async def async_client():
+    async with AsyncClient(app=app, base_url="http://test") as client:
+        yield client
