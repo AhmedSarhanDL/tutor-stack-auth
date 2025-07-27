@@ -13,8 +13,8 @@ from typing import Optional
 import uuid
 
 # JWT Configuration
-SECRET_PRIVATE_KEY_PATH = os.getenv("SECRET_PRIVATE_KEY_PATH", "/keys/jwtRS256.key")
-SECRET_PUBLIC_KEY_PATH = os.getenv("SECRET_PUBLIC_KEY_PATH", "/keys/jwtRS256.key.pub")
+SECRET_PRIVATE_KEY_PATH = os.getenv("SECRET_PRIVATE_KEY_PATH", "./keys/jwtRS256.key")
+SECRET_PUBLIC_KEY_PATH = os.getenv("SECRET_PUBLIC_KEY_PATH", "./keys/jwtRS256.key.pub")
 
 SECRET = os.getenv("SECRET_KEY", "dev-secret-key-change-in-production")
 

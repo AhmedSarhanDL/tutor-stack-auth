@@ -76,7 +76,7 @@ if GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET:
     
     # Get the private key for OAuth
     try:
-        with open(os.getenv("SECRET_PRIVATE_KEY_PATH", "/keys/jwtRS256.key"), "r") as f:
+        with open(os.getenv("SECRET_PRIVATE_KEY_PATH", "./keys/jwtRS256.key"), "r") as f:
             secret = f.read()
     except FileNotFoundError:
         secret = "dev-secret-key-change-in-production"
