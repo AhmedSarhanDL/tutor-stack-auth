@@ -3,6 +3,7 @@
 import os
 import uuid
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi_users import FastAPIUsers
 from fastapi_users.authentication import JWTStrategy, AuthenticationBackend, BearerTransport
 from fastapi_users.manager import UserManagerDependency
@@ -18,6 +19,15 @@ app = FastAPI(
     title="Tutor Stack Auth Service",
     description="Authentication service with JWT and OAuth support",
     version="1.0.0"
+)
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Create bearer transport
