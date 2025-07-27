@@ -21,6 +21,7 @@ class User(SQLAlchemyBaseUserTableUUID, Base):
     # Additional fields for Tutor Stack
     first_name = Column(String(100), nullable=True)
     last_name = Column(String(100), nullable=True)
-    role = Column(String(50), default="student")  # student, teacher, admin
+    role = Column(String(50), default="student")  # student, teacher, parent
+    grade = Column(String(20), nullable=True)  # grade level for students
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False) 
