@@ -36,15 +36,20 @@ def get_jwt_strategy() -> JWTStrategy:
     """Get JWT strategy with RS256 algorithm"""
     try:
         with open(SECRET_PRIVATE_KEY_PATH, "r") as f:
-            secret = f.read()
+            private_key = f.read()
+        with open(SECRET_PUBLIC_KEY_PATH, "r") as f:
+            public_key = f.read()
     except FileNotFoundError:
         # Fallback for development
-        secret = "dev-secret-key-change-in-production"
+        private_key = "dev-secret-key-change-in-production"
+        public_key = "dev-secret-key-change-in-production"
     
     return JWTStrategy(
-        secret=secret,
+        secret=private_key,
+        public_key=public_key,
         algorithm="RS256",
-        lifetime_seconds=3600  # 1 hour
+        lifetime_seconds=3600,  # 1 hour
+        token_audience=["fastapi-users:auth"]  # Explicitly set the audience
     )
 
 

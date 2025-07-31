@@ -71,6 +71,8 @@ app.include_router(
 GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
 GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
 
+google_oauth_client = None # Initialize to None
+
 if GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET:
     google_oauth_client = GoogleOAuth2(GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET)
     
